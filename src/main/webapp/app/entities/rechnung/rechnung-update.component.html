@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-rechnung-heading" jhiTranslate="beihilfeApp.rechnung.home.createOrEditLabel">Create or edit a Rechnung</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!rechnung.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="rechnung.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="beihilfeApp.rechnung.rechnungID" for="field_rechnungID">Rechnung ID</label>
+                    <input type="text" class="form-control" name="rechnungID" id="field_rechnungID"
+                        [(ngModel)]="rechnung.rechnungID" required/>
+                    <div [hidden]="!(editForm.controls.rechnungID?.dirty && editForm.controls.rechnungID?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.rechnungID?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="beihilfeApp.rechnung.austellungsDate" for="field_austellungsDate">Austellungs Date</label>
+                    <div class="input-group">
+                        <input id="field_austellungsDate" type="text" class="form-control" name="austellungsDate" ngbDatepicker  #austellungsDateDp="ngbDatepicker" [(ngModel)]="rechnung.austellungsDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="austellungsDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.austellungsDate?.dirty && editForm.controls.austellungsDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.austellungsDate?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="beihilfeApp.rechnung.bezahlDate" for="field_bezahlDate">Bezahl Date</label>
+                    <input type="text" class="form-control" name="bezahlDate" id="field_bezahlDate"
+                        [(ngModel)]="rechnung.bezahlDate" required/>
+                    <div [hidden]="!(editForm.controls.bezahlDate?.dirty && editForm.controls.bezahlDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.bezahlDate?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="beihilfeApp.rechnung.betrag" for="field_betrag">Betrag</label>
+                    <input type="number" class="form-control" name="betrag" id="field_betrag"
+                        [(ngModel)]="rechnung.betrag" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="beihilfeApp.rechnung.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="rechnung.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === rechnung.user?.id ? rechnung.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

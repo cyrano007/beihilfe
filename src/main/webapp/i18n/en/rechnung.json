@@ -1,0 +1,26 @@
+
+{
+    "beihilfeApp": {
+        "rechnung" : {
+            "home": {
+                "title": "Rechnungs",
+                "createLabel": "Create a new Rechnung",
+                "createOrEditLabel": "Create or edit a Rechnung"
+            },
+            "created": "A new Rechnung is created with identifier {{ param }}",
+            "updated": "A Rechnung is updated with identifier {{ param }}",
+            "deleted": "A Rechnung is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Rechnung {{ id }}?"
+            },
+            "detail": {
+                "title": "Rechnung"
+            },
+            "rechnungID": "Rechnung ID",
+            "austellungsDate": "Austellungs Date",
+            "bezahlDate": "Bezahl Date",
+            "betrag": "Betrag",
+            "user": "User"
+        }
+    }
+}

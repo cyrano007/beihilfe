@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="rechnung">
+            <h2><span jhiTranslate="beihilfeApp.rechnung.detail.title">Rechnung</span> {{rechnung.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="beihilfeApp.rechnung.rechnungID">Rechnung ID</span></dt>
+                <dd>
+                    <span>{{rechnung.rechnungID}}</span>
+                </dd>
+                <dt><span jhiTranslate="beihilfeApp.rechnung.austellungsDate">Austellungs Date</span></dt>
+                <dd>
+                    <span>{{rechnung.austellungsDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="beihilfeApp.rechnung.bezahlDate">Bezahl Date</span></dt>
+                <dd>
+                    <span>{{rechnung.bezahlDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="beihilfeApp.rechnung.betrag">Betrag</span></dt>
+                <dd>
+                    <span>{{rechnung.betrag}}</span>
+                </dd>
+                <dt><span jhiTranslate="beihilfeApp.rechnung.user">User</span></dt>
+                <dd>
+                    {{rechnung.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/rechnung', rechnung.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
